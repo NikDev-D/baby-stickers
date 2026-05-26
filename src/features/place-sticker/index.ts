@@ -1,1 +1,1 @@
-// export { DraggableSticker } from "./ui/DraggableSticker";
+export { DraggableSticker } from "./ui/DraggableSticker";
