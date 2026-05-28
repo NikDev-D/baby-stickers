@@ -10,16 +10,28 @@ type Props = {
 export function DraggableSticker({ sticker }: Props) {
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
+  const offsetX = useSharedValue(0);
+  const offsetY = useSharedValue(0);
   const scale = useSharedValue(1);
+  const savedScale = useSharedValue(1);
 
-  const dragGesture = Gesture.Pan().onUpdate((e) => {
-    translateX.value = e.translationX;
-    translateY.value = e.translationY;
-  });
+  const dragGesture = Gesture.Pan()
+    .onUpdate((e) => {
+      translateX.value = offsetX.value + e.translationX;
+      translateY.value = offsetY.value + e.translationY;
+    })
+    .onEnd(() => {
+      offsetX.value = translateX.value;
+      offsetY.value = translateY.value;
+    });
 
-  const pinchGesture = Gesture.Pinch().onUpdate((e) => {
-    scale.value = e.scale;
-  });
+  const pinchGesture = Gesture.Pinch()
+    .onUpdate((e) => {
+      scale.value = savedScale.value * e.scale;
+    })
+    .onEnd(() => {
+      savedScale.value = scale.value;
+    });
 
   const gesture = Gesture.Simultaneous(dragGesture, pinchGesture);
 
