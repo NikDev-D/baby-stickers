@@ -36,9 +36,11 @@ const styles = StyleSheet.create({
   canvas: {
     flex: 1,
     width: "100%",
+    backgroundColor: "black",
   },
   photo: {
     flex: 1,
     width: "100%",
+    resizeMode: "cover",
   },
 });
