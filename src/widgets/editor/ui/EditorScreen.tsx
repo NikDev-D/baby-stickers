@@ -1,18 +1,28 @@
 import { DEFAULT_STICKER } from "@/entities/sticker";
+import { saveToGallery, shareImage } from "@/features/export-image";
 import { pickPhoto } from "@/features/pick-photo";
 import { DraggableSticker } from "@/features/place-sticker";
 import { Photo, Sticker } from "@/shared";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button, Image, StyleSheet, View } from "react-native";
 import { StickerPanel } from "./StickerPanel";
 
 export function EditorScreen() {
   const [photo, setPhoto] = useState<Photo | null>(null);
   const [sticker, setSticker] = useState<Sticker>(DEFAULT_STICKER);
+  const canvasRef = useRef<View>(null);
 
   async function handlePickPhoto() {
     const result = await pickPhoto();
     if (result) setPhoto(result);
+  }
+
+  async function handleSave() {
+    await saveToGallery(canvasRef);
+  }
+
+  async function handleShare() {
+    await shareImage(canvasRef);
   }
 
   if (!photo) {
@@ -25,11 +35,15 @@ export function EditorScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.canvas}>
+      <View style={styles.canvas} ref={canvasRef} collapsable={false}>
         <Image source={{ uri: photo.uri }} style={styles.photo} />
         <DraggableSticker sticker={sticker} />
       </View>
       <StickerPanel onSelect={setSticker} />
+      <View style={styles.actions}>
+        <Button title="Сохранить" onPress={handleSave} />
+        <Button title="Поделиться" onPress={handleShare} />
+      </View>
     </View>
   );
 }
@@ -45,7 +59,6 @@ const styles = StyleSheet.create({
   },
   canvas: {
     flex: 1,
-    // overflow: "hidden",
   },
   photo: {
     position: "absolute",
@@ -54,5 +67,11 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     resizeMode: "cover",
+  },
+  actions: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    padding: 12,
+    backgroundColor: "white",
   },
 });
