@@ -3,8 +3,9 @@ import { saveToGallery, shareImage } from "@/features/export-image";
 import { pickPhoto } from "@/features/pick-photo";
 import { DraggableSticker } from "@/features/place-sticker";
 import { Photo, Sticker } from "@/shared";
+import { Button, CoinFlip } from "@/shared/ui";
 import { useRef, useState } from "react";
-import { Button, Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { StickerPanel } from "./StickerPanel";
 
 export function EditorScreen() {
@@ -33,7 +34,8 @@ export function EditorScreen() {
   if (!photo) {
     return (
       <View style={styles.centered}>
-        <Button title="Выбрать фото" onPress={handlePickPhoto} />
+        <CoinFlip />
+        <Button title="Выбрать фото" size="large" onPress={handlePickPhoto} />
       </View>
     );
   }
@@ -57,11 +59,13 @@ export function EditorScreen() {
 const styles = StyleSheet.create({
   centered: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FFF8F0",
   },
   container: {
     flex: 1,
+    backgroundColor: "#FFF8F0",
   },
   canvas: {
     flex: 1,
@@ -78,6 +82,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     padding: 12,
-    backgroundColor: "white",
+    backgroundColor: "#FFF8F0",
   },
 });
