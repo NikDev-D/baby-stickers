@@ -18,7 +18,12 @@ export function EditorScreen() {
   }
 
   async function handleSave() {
-    await saveToGallery(canvasRef);
+    try {
+      const result = await saveToGallery(canvasRef);
+      alert(result ? "Сохранено!" : "Нет разрешения");
+    } catch (e: any) {
+      alert("Ошибка: " + e.message);
+    }
   }
 
   async function handleShare() {

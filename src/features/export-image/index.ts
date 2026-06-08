@@ -5,13 +5,16 @@ import { View } from "react-native";
 import { captureRef } from "react-native-view-shot";
 
 export async function saveToGallery(ref: RefObject<View | null>): Promise<boolean> {
-  const uri = await captureRef(ref, { format: "jpg", quality: 0.9 });
-  const { status } = await MediaLibrary.requestPermissionsAsync();
-  if (status !== "granted") return false;
-  await MediaLibrary.saveToLibraryAsync(uri);
-  return true;
+  try {
+    await MediaLibrary.requestPermissionsAsync();
+    const uri = await captureRef(ref, { format: "jpg", quality: 0.9 });
+    await MediaLibrary.saveToLibraryAsync(uri);
+    return true;
+  } catch (e: any) {
+    alert("Ошибка: " + e.message);
+    return false;
+  }
 }
-
 export async function shareImage(ref: RefObject<View | null>): Promise<void> {
   const uri = await captureRef(ref, { format: "jpg", quality: 0.9 });
   await Sharing.shareAsync(uri);
