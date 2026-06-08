@@ -46,6 +46,7 @@ export function EditorScreen() {
       </View>
       <StickerPanel onSelect={setSticker} />
       <View style={styles.actions}>
+        <Button title="Сменить" onPress={handlePickPhoto} />
         <Button title="Сохранить" onPress={handleSave} />
         <Button title="Поделиться" onPress={handleShare} />
       </View>
