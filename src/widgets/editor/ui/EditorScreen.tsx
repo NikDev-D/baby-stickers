@@ -6,6 +6,7 @@ import { Photo, Sticker } from "@/shared";
 import { Button, CoinFlip } from "@/shared/ui";
 import { useRef, useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
+import { HomeTitle } from "./HomeTitle";
 import { StickerPanel } from "./StickerPanel";
 
 export function EditorScreen() {
@@ -34,6 +35,7 @@ export function EditorScreen() {
   if (!photo) {
     return (
       <View style={styles.centered}>
+        <HomeTitle />
         <CoinFlip />
         <Button title="Выбрать фото" size="large" onPress={handlePickPhoto} />
       </View>

@@ -31,6 +31,6 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   textLarge: {
-    fontSize: 25,
+    fontSize: 22,
   },
 });
