@@ -1,6 +1,6 @@
-import { ScrollView, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { STICKERS } from "@/entities/sticker";
 import { Sticker } from "@/shared";
+import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 
 type Props = {
   onSelect: (sticker: Sticker) => void;
@@ -24,11 +24,12 @@ export function StickerPanel({ onSelect }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
-    maxHeight: 80,
+    backgroundColor: "#FFF8F0",
+    maxHeight: 88,
   },
   content: {
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
     alignItems: "center",
     gap: 8,
   },
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   image: {
-    width: 48,
-    height: 48,
+    width: 56,
+    height: 56,
   },
 });

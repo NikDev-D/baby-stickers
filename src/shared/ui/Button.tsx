@@ -17,7 +17,7 @@ export function Button({ title, onPress, size = "small" }: Props) {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "#FF7F5C",
-    paddingHorizontal: 25,
+    paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 16,
   },
@@ -27,10 +27,10 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "white",
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: "600",
   },
   textLarge: {
-    fontSize: 18,
+    fontSize: 25,
   },
 });
