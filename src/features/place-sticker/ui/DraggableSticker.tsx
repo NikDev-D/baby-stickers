@@ -16,6 +16,8 @@ export function DraggableSticker({ sticker }: Props) {
   const savedScale = useSharedValue(1);
 
   const dragGesture = Gesture.Pan()
+    .minPointers(1)
+    .maxPointers(1)
     .onUpdate((e) => {
       translateX.value = offsetX.value + e.translationX;
       translateY.value = offsetY.value + e.translationY;
@@ -42,7 +44,7 @@ export function DraggableSticker({ sticker }: Props) {
   return (
     <GestureDetector gesture={gesture}>
       <Animated.View style={animatedStyle}>
-        <Image source={sticker.uri} style={{ width: 100, height: 100 }} />
+        <Image source={sticker.uri} style={{ width: 140, height: 140 }} />
       </Animated.View>
     </GestureDetector>
   );

@@ -6,10 +6,12 @@ import { Photo, Sticker } from "@/shared";
 import { Button, CoinFlip } from "@/shared/ui";
 import { useRef, useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { HomeTitle } from "./HomeTitle";
 import { StickerPanel } from "./StickerPanel";
 
 export function EditorScreen() {
+  const insets = useSafeAreaInsets();
   const [photo, setPhoto] = useState<Photo | null>(null);
   const [sticker, setSticker] = useState<Sticker>(DEFAULT_STICKER);
   const canvasRef = useRef<View>(null);
@@ -49,7 +51,7 @@ export function EditorScreen() {
         <DraggableSticker sticker={sticker} />
       </View>
       <StickerPanel onSelect={setSticker} />
-      <View style={styles.actions}>
+      <View style={[styles.actions, { paddingBottom: 12 + insets.bottom }]}>
         <Button title="Сменить" onPress={handlePickPhoto} />
         <Button title="Сохранить" onPress={handleSave} />
         <Button title="Поделиться" onPress={handleShare} />

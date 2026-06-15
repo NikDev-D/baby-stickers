@@ -27,7 +27,6 @@ export function CoinFlip() {
   const backStyle = useAnimatedStyle(() => ({
     transform: [{ rotateY: `${rotateY.value + 180}deg` }],
     backfaceVisibility: "hidden",
-    position: "absolute",
   }));
 
   return (
@@ -44,13 +43,16 @@ export function CoinFlip() {
 
 const styles = StyleSheet.create({
   container: {
-    width: 160,
-    height: 160,
+    width: 190,
+    height: 190,
     marginBottom: 40,
   },
   coin: {
     width: 160,
     height: 160,
+    position: "absolute",
+    top: 15,
+    left: 15,
   },
   image: {
     width: 160,
