@@ -24,6 +24,5 @@ const styles = StyleSheet.create({
     color: "#5C4A3A",
     marginTop: 4,
     fontStyle: "italic",
-    // textTransform: "uppercase",
   },
 });
