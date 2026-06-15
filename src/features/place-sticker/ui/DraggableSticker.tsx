@@ -1,51 +1,26 @@
 import { Sticker } from "@/shared";
 import { Image } from "react-native";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import Animated, { useAnimatedStyle, useSharedValue } from "react-native-reanimated";
+import Animated, { SharedValue, useAnimatedStyle } from "react-native-reanimated";
 
 type Props = {
   sticker: Sticker;
+  translateX: SharedValue<number>;
+  translateY: SharedValue<number>;
+  scale: SharedValue<number>;
 };
 
-export function DraggableSticker({ sticker }: Props) {
-  const translateX = useSharedValue(0);
-  const translateY = useSharedValue(0);
-  const offsetX = useSharedValue(0);
-  const offsetY = useSharedValue(0);
-  const scale = useSharedValue(1);
-  const savedScale = useSharedValue(1);
-
-  const dragGesture = Gesture.Pan()
-    .minPointers(1)
-    .maxPointers(1)
-    .onUpdate((e) => {
-      translateX.value = offsetX.value + e.translationX;
-      translateY.value = offsetY.value + e.translationY;
-    })
-    .onEnd(() => {
-      offsetX.value = translateX.value;
-      offsetY.value = translateY.value;
-    });
-
-  const pinchGesture = Gesture.Pinch()
-    .onUpdate((e) => {
-      scale.value = savedScale.value * e.scale;
-    })
-    .onEnd(() => {
-      savedScale.value = scale.value;
-    });
-
-  const gesture = Gesture.Simultaneous(dragGesture, pinchGesture);
-
+export function DraggableSticker({ sticker, translateX, translateY, scale }: Props) {
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: translateX.value }, { translateY: translateY.value }, { scale: scale.value }],
+    transform: [
+      { translateX: translateX.value },
+      { translateY: translateY.value },
+      { scale: scale.value },
+    ],
   }));
 
   return (
-    <GestureDetector gesture={gesture}>
-      <Animated.View style={animatedStyle}>
-        <Image source={sticker.uri} style={{ width: 140, height: 140 }} />
-      </Animated.View>
-    </GestureDetector>
+    <Animated.View style={animatedStyle}>
+      <Image source={sticker.uri} style={{ width: 140, height: 140 }} />
+    </Animated.View>
   );
 }
