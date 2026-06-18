@@ -66,7 +66,6 @@ export function EditorScreen() {
 
   function handleSelectSticker(s: Sticker) {
     setSticker(s);
-    resetTransform();
   }
 
   async function handleSave() {

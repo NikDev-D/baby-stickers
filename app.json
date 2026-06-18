@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "baby-stickers",
+    "name": "Baby Stickers",
     "slug": "baby-stickers",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/baby_splash.png",
     "scheme": "babystickers",
     "userInterfaceStyle": "automatic",
     "ios": {
@@ -12,10 +12,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "backgroundColor": "#FDDBB4",
+        "foregroundImage": "./assets/images/baby_splash.png"
       },
       "predictiveBackGestureEnabled": false,
       "permissions": [
